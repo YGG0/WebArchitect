@@ -22,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-      <html lang="id" className="h-full antialiased">
+      <html lang="id" suppressHydrationWarning className="h-full antialiased">
         <head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
             rel="stylesheet"
           />
         </head>
-        <body className="min-h-full flex flex-col font-sans text-stone-900 bg-stone-50 selection:bg-amber-500 selection:text-white">
+        <body suppressHydrationWarning className="min-h-full flex flex-col font-sans text-stone-900 bg-stone-50 selection:bg-amber-500 selection:text-white">
           {children}
           <FloatingWhatsApp />
         </body>
