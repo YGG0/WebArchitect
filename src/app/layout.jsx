@@ -1,20 +1,6 @@
-import { Geist, Geist_Mono, Cormorant_Garamond } from 'next/font/google';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 import './globals.css';
-const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin'],
-});
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin'],
-});
-const cormorant = Cormorant_Garamond({
-    variable: '--font-cormorant',
-    subsets: ['latin'],
-    weight: ['400', '500', '600', '700'],
-    style: ['normal', 'italic'],
-});
+
 export const metadata = {
     title: 'SPRIO Architect & Interior | Jasa Desain Arsitektur Rumah Mewah & Villa',
     description: 'Biro konsultan arsitektur dan desain interior terkemuka di Indonesia. Menghadirkan desain rumah modern tropis, klasik mewah, mediterania, dan villa dengan visualisasi 3D realistis dan gambar kerja lengkap.',
@@ -33,11 +19,22 @@ export const metadata = {
         images: ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'],
     },
 };
-export default function RootLayout({ children, }) {
-    return (<html lang="id" className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans text-stone-900 bg-stone-50 selection:bg-amber-500 selection:text-white">
-        {children}
-        <FloatingWhatsApp />
-      </body>
-    </html>);
+
+export default function RootLayout({ children }) {
+    return (
+      <html lang="id" className="h-full antialiased">
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
+        </head>
+        <body className="min-h-full flex flex-col font-sans text-stone-900 bg-stone-50 selection:bg-amber-500 selection:text-white">
+          {children}
+          <FloatingWhatsApp />
+        </body>
+      </html>
+    );
 }
