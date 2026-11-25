@@ -98,7 +98,7 @@ export default function PortfolioPage() {
                 return b.title.localeCompare(a.title);
             return b.year - a.year || b.title.localeCompare(a.title);
         });
-    }, [filter, sortBy]);
+    }, [allProjects, filter, sortBy]);
     return (<div className="min-h-screen flex flex-col bg-stone-50">
       <Navbar />
 
