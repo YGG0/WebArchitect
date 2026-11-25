@@ -93,10 +93,23 @@ export function readDB() {
     }
     const raw = fs.readFileSync(DB_PATH, 'utf8');
     const parsed = JSON.parse(raw);
+    const mergedSettings = { ...DEFAULT_DATA.settings, ...(parsed.settings || {}) };
+    if (!Array.isArray(mergedSettings.phones) || mergedSettings.phones.length === 0) {
+      mergedSettings.phones = [
+        {
+          label: 'WhatsApp Hotline',
+          number: mergedSettings.whatsappNumber || DEFAULT_DATA.settings.whatsappNumber,
+          display: mergedSettings.whatsappDisplay || DEFAULT_DATA.settings.whatsappDisplay,
+        },
+      ];
+    }
+    if (!Array.isArray(mergedSettings.emails) || mergedSettings.emails.length === 0) {
+      mergedSettings.emails = [mergedSettings.email || DEFAULT_DATA.settings.email];
+    }
     return {
       ...DEFAULT_DATA,
       ...parsed,
-      settings: { ...DEFAULT_DATA.settings, ...(parsed.settings || {}) },
+      settings: mergedSettings,
     };
   } catch {
     return JSON.parse(JSON.stringify(DEFAULT_DATA));

@@ -390,6 +390,7 @@ export default function AdminDashboard() {
                   label="Foto Background Utama"
                   value={settings.heroImage}
                   onChange={(url) => setSettings({ ...settings, heroImage: url })}
+                  spec="Rekomendasi: Landscape (16:9) • Min. 1920 × 1080 px • JPG/PNG/WebP (Maks. 5 MB)"
                 />
 
                 <hr className="border-stone-100" />
@@ -457,6 +458,7 @@ export default function AdminDashboard() {
                   label="Foto Banner Header"
                   value={settings.portfolioBannerImage}
                   onChange={(url) => setSettings({ ...settings, portfolioBannerImage: url })}
+                  spec="Rekomendasi: Landscape (16:9) • Min. 1920 × 800 px • JPG/PNG/WebP (Maks. 5 MB)"
                 />
 
                 <div className="flex justify-end">
@@ -531,6 +533,7 @@ export default function AdminDashboard() {
                       label="Foto Utama Proyek"
                       value={newProject.thumbnail}
                       onChange={(url) => setNewProject({ ...newProject, thumbnail: url })}
+                      spec="Rekomendasi: Landscape (4:3) • Min. 1200 × 900 px • JPG/PNG/WebP (Maks. 5 MB)"
                       compact
                     />
                     <div>
@@ -618,6 +621,7 @@ export default function AdminDashboard() {
                   label="Foto Banner Header"
                   value={settings.layananBannerImage}
                   onChange={(url) => setSettings({ ...settings, layananBannerImage: url })}
+                  spec="Rekomendasi: Landscape (16:9) • Min. 1920 × 800 px • JPG/PNG/WebP (Maks. 5 MB)"
                 />
               </div>
 
@@ -661,6 +665,7 @@ export default function AdminDashboard() {
                   label="Foto Banner Header"
                   value={settings.paketBannerImage}
                   onChange={(url) => setSettings({ ...settings, paketBannerImage: url })}
+                  spec="Rekomendasi: Landscape (16:9) • Min. 1920 × 800 px • JPG/PNG/WebP (Maks. 5 MB)"
                 />
               </div>
 
@@ -732,11 +737,13 @@ export default function AdminDashboard() {
                     label="Foto Banner Atas"
                     value={settings.tentangBannerImage}
                     onChange={(url) => setSettings({ ...settings, tentangBannerImage: url })}
+                    spec="Rekomendasi: Landscape (16:9) • Min. 1920 × 800 px • JPG/PNG/WebP"
                   />
                   <ImageUploadField
                     label="Foto Samping Cerita"
                     value={settings.tentangSideImage}
                     onChange={(url) => setSettings({ ...settings, tentangSideImage: url })}
+                    spec="Rekomendasi: Landscape (4:3) • Min. 1200 × 900 px • JPG/PNG/WebP"
                   />
                 </div>
               </div>

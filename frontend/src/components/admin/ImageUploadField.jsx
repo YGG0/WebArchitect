@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { Upload, Loader2 } from 'lucide-react';
 
-export default function ImageUploadField({ label, value, onChange, compact = false }) {
+export default function ImageUploadField({ label, value, onChange, spec, compact = false }) {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState('');
   const fileInputRef = useRef(null);
@@ -68,6 +68,13 @@ export default function ImageUploadField({ label, value, onChange, compact = fal
           className="flex-1 px-3.5 py-2.5 text-xs text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
         />
       </div>
+
+      {spec && (
+        <p className="text-[11px] text-stone-500 flex items-center gap-1.5">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+          <span>{spec}</span>
+        </p>
+      )}
 
       {error && <p className="text-[11px] text-rose-600">{error}</p>}
 
