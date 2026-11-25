@@ -18,11 +18,9 @@
   font-style: italic;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Keep consistent light theme colors even when OS is in dark mode */
+input, textarea, select {
+  color: #1c1917;
 }
 
 /* === GLOBAL SMOOTHNESS === */

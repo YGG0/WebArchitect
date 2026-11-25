@@ -242,7 +242,7 @@ export default function AdminDashboard() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Masukkan password..."
-                className="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                className="w-full px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
               />
               <p className="text-[11px] text-stone-400 mt-1.5">
                 Password default lokal: <code className="bg-stone-100 px-1.5 py-0.5 rounded text-stone-700 font-semibold">admin123</code>
@@ -374,7 +374,7 @@ export default function AdminDashboard() {
                     type="text"
                     value={settings.heroTitle}
                     onChange={(e) => setSettings({ ...settings, heroTitle: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                    className="w-full px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                   />
                 </div>
 
@@ -384,7 +384,7 @@ export default function AdminDashboard() {
                     type="text"
                     value={settings.heroSubtitle}
                     onChange={(e) => setSettings({ ...settings, heroSubtitle: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                    className="w-full px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                   />
                 </div>
               </div>
@@ -404,7 +404,7 @@ export default function AdminDashboard() {
                       value={settings.whatsappNumber}
                       onChange={(e) => setSettings({ ...settings, whatsappNumber: e.target.value })}
                       placeholder="6287872008510"
-                      className="w-full px-3.5 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                      className="w-full px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                     />
                   </div>
                   <div>
@@ -414,7 +414,7 @@ export default function AdminDashboard() {
                       value={settings.whatsappDisplay}
                       onChange={(e) => setSettings({ ...settings, whatsappDisplay: e.target.value })}
                       placeholder="+62 878-7200-8510"
-                      className="w-full px-3.5 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                      className="w-full px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                     />
                   </div>
                 </div>
@@ -425,7 +425,7 @@ export default function AdminDashboard() {
                     type="email"
                     value={settings.email}
                     onChange={(e) => setSettings({ ...settings, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                    className="w-full px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                   />
                 </div>
               </div>
@@ -444,7 +444,7 @@ export default function AdminDashboard() {
                       type="text"
                       value={settings.address}
                       onChange={(e) => setSettings({ ...settings, address: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                      className="w-full px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                     />
                   </div>
                   <div>
@@ -453,7 +453,7 @@ export default function AdminDashboard() {
                       type="text"
                       value={settings.branchAddress}
                       onChange={(e) => setSettings({ ...settings, branchAddress: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                      className="w-full px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                     />
                   </div>
                 </div>
@@ -465,7 +465,7 @@ export default function AdminDashboard() {
                       type="text"
                       value={settings.googleMapsUrl}
                       onChange={(e) => setSettings({ ...settings, googleMapsUrl: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                      className="w-full px-3.5 py-2.5 text-xs text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                     />
                   </div>
                   <div>
@@ -474,7 +474,7 @@ export default function AdminDashboard() {
                       type="text"
                       value={settings.googleMapsEmbedUrl}
                       onChange={(e) => setSettings({ ...settings, googleMapsEmbedUrl: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
+                      className="w-full px-3.5 py-2.5 text-xs text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600 focus:bg-white"
                     />
                   </div>
                 </div>
@@ -519,7 +519,7 @@ export default function AdminDashboard() {
                       value={newProject.title}
                       onChange={(e) => setNewProject({ ...newProject, title: e.target.value })}
                       placeholder="Misal: Rumah Minimalis Kemang"
-                      className="w-full px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
+                      className="w-full px-3 py-2.5 text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
                     />
                   </div>
 
@@ -529,7 +529,7 @@ export default function AdminDashboard() {
                       <select
                         value={newProject.category}
                         onChange={(e) => setNewProject({ ...newProject, category: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
+                        className="w-full px-3 py-2.5 text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
                       >
                         <option value="Rumah Tinggal">Rumah Tinggal</option>
                         <option value="Villa">Villa</option>
@@ -543,7 +543,7 @@ export default function AdminDashboard() {
                         type="number"
                         value={newProject.buildingArea}
                         onChange={(e) => setNewProject({ ...newProject, buildingArea: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
+                        className="w-full px-3 py-2.5 text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
                       />
                     </div>
                   </div>
@@ -556,7 +556,7 @@ export default function AdminDashboard() {
                       value={newProject.location}
                       onChange={(e) => setNewProject({ ...newProject, location: e.target.value })}
                       placeholder="Contoh: Jakarta Selatan"
-                      className="w-full px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
+                      className="w-full px-3 py-2.5 text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
                     />
                   </div>
 
@@ -566,7 +566,7 @@ export default function AdminDashboard() {
                       type="url"
                       value={newProject.thumbnail}
                       onChange={(e) => setNewProject({ ...newProject, thumbnail: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
+                      className="w-full px-3 py-2.5 text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
                     />
                   </div>
 
@@ -577,7 +577,7 @@ export default function AdminDashboard() {
                       value={newProject.description}
                       onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
                       placeholder="Ceritakan konsep desainnya..."
-                      className="w-full px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
+                      className="w-full px-3 py-2.5 text-stone-900 placeholder:text-stone-400 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600"
                     />
                   </div>
 
