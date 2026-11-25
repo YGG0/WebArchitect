@@ -21,8 +21,9 @@ export default function ConsultationSection() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
         try {
-            const res = await fetch('/api/consultations', {
+            const res = await fetch(`${apiBase}/api/consultations`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

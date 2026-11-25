@@ -23,9 +23,10 @@ export default function AdminDashboardPage() {
         description: '',
         thumbnail: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
     });
+    const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
     // Fetch latest consultations from API
     useEffect(() => {
-        fetch('/api/consultations')
+        fetch(`${apiBase}/api/consultations`)
             .then((res) => res.json())
             .then((data) => {
             if (data.success && data.data) {
@@ -33,11 +34,11 @@ export default function AdminDashboardPage() {
             }
         })
             .catch(() => { });
-    }, []);
+    }, [apiBase]);
     const handleUpdateConsultationStatus = async (id, status) => {
         setConsultations((prev) => prev.map((c) => (c.id === id ? { ...c, status } : c)));
         try {
-            await fetch('/api/consultations', {
+            await fetch(`${apiBase}/api/consultations`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id, status }),
