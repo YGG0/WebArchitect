@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import consultationsRouter from './routes/consultations.js';
 import projectsRouter from './routes/projects.js';
+import settingsRouter from './routes/settings.js';
+import authRouter from './routes/auth.js';
 
 dotenv.config();
 
@@ -27,7 +29,7 @@ app.get('/', (req, res) => {
   res.json({
     success: true,
     service: 'SPRIO Architect & Interior Backend API',
-    version: '1.0.0',
+    version: '1.1.0',
   });
 });
 
@@ -38,6 +40,8 @@ app.get('/api/health', (req, res) => {
 // Routes
 app.use('/api/consultations', consultationsRouter);
 app.use('/api/projects', projectsRouter);
+app.use('/api/settings', settingsRouter);
+app.use('/api/auth', authRouter);
 
 app.listen(PORT, () => {
   console.log(`🚀 Backend Express berjalan di http://localhost:${PORT}`);
