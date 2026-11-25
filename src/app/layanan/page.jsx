@@ -1,30 +1,17 @@
 'use client';
-
 import React from 'react';
-import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { SERVICES_DATA } from '@/data/mockData';
-import { 
-  Building2, 
-  LayoutGrid, 
-  Eye, 
-  Compass, 
-  CheckCircle2, 
-  Sparkles, 
-  ArrowRight 
-} from 'lucide-react';
-
-const iconMap: Record<string, React.ReactNode> = {
-  Building2: <Building2 className="w-8 h-8" />,
-  LayoutGrid: <LayoutGrid className="w-8 h-8" />,
-  Eye: <Eye className="w-8 h-8" />,
-  Compass: <Compass className="w-8 h-8" />,
+import { Building2, LayoutGrid, Eye, Compass, CheckCircle2, Sparkles } from 'lucide-react';
+const iconMap = {
+    Building2: <Building2 className="w-8 h-8"/>,
+    LayoutGrid: <LayoutGrid className="w-8 h-8"/>,
+    Eye: <Eye className="w-8 h-8"/>,
+    Compass: <Compass className="w-8 h-8"/>,
 };
-
 export default function ServicesPage() {
-  return (
-    <div className="min-h-screen flex flex-col bg-stone-50">
+    return (<div className="min-h-screen flex flex-col bg-stone-50">
       <Navbar />
 
       <main className="flex-1">
@@ -32,12 +19,8 @@ export default function ServicesPage() {
         <section className="relative w-full h-[52vh] min-h-[380px] flex items-center justify-center overflow-hidden bg-stone-950 text-white pt-24 pb-12">
           {/* Background Architectural Photo */}
           <div className="absolute inset-0 z-0">
-            <img
-              src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2200&q=85"
-              alt="Layanan Arsitektur & Desain"
-              className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.05]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent" />
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2200&q=85" alt="Layanan Arsitektur & Desain" className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.05]"/>
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent"/>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -53,22 +36,12 @@ export default function ServicesPage() {
         {/* Detailed Services Listing */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-            {SERVICES_DATA.map((srv, idx) => (
-              <div
-                key={srv.id}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${
-                  idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                }`}
-              >
+            {SERVICES_DATA.map((srv, idx) => (<div key={srv.id} className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 {/* Image */}
                 <div className={`lg:col-span-6 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
                   <div className="relative aspect-[16/10] rounded-xs overflow-hidden shadow-xl border border-stone-200 group">
-                    <img
-                      src={srv.image}
-                      alt={srv.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-stone-900/10" />
+                    <img src={srv.image} alt={srv.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+                    <div className="absolute inset-0 bg-stone-900/10"/>
                   </div>
                 </div>
 
@@ -82,7 +55,7 @@ export default function ServicesPage() {
                     <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
                       {srv.title}
                     </h2>
-                    <div className="w-12 h-1 bg-amber-500 mt-3 rounded-full" />
+                    <div className="w-12 h-1 bg-amber-500 mt-3 rounded-full"/>
                   </div>
 
                   <p className="text-stone-600 text-sm leading-relaxed">
@@ -94,32 +67,25 @@ export default function ServicesPage() {
                       Cakupan Pekerjaan yang Anda Dapatkan:
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {srv.features.map((feat, fIdx) => (
-                        <div key={fIdx} className="flex items-start gap-2 text-xs text-stone-700">
-                          <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      {srv.features.map((feat, fIdx) => (<div key={fIdx} className="flex items-start gap-2 text-xs text-stone-700">
+                          <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5"/>
                           <span>{feat}</span>
-                        </div>
-                      ))}
+                        </div>))}
                     </div>
                   </div>
 
                   <div className="pt-4">
-                    <a
-                      href="#konsultasi"
-                      className="inline-flex items-center gap-2 bg-stone-900 hover:bg-amber-600 text-white text-xs font-semibold uppercase tracking-wider px-6 py-3.5 rounded-xs transition-colors"
-                    >
-                      <Sparkles className="w-4 h-4 text-amber-400" />
+                    <a href="#konsultasi" className="inline-flex items-center gap-2 bg-stone-900 hover:bg-amber-600 text-white text-xs font-semibold uppercase tracking-wider px-6 py-3.5 rounded-xs transition-colors">
+                      <Sparkles className="w-4 h-4 text-amber-400"/>
                       Konsultasikan Kebutuhan Ini
                     </a>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>))}
           </div>
         </section>
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>);
 }
