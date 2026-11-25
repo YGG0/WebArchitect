@@ -93,8 +93,9 @@ export function readDB() {
     }
     const raw = fs.readFileSync(DB_PATH, 'utf8');
     const parsed = JSON.parse(raw);
-    const mergedSettings = { ...DEFAULT_DATA.settings, ...(parsed.settings || {}) };
-    if (!Array.isArray(mergedSettings.phones) || mergedSettings.phones.length === 0) {
+    const parsedSettings = parsed.settings || {};
+    const mergedSettings = { ...DEFAULT_DATA.settings, ...parsedSettings };
+    if (!Array.isArray(parsedSettings.phones) || parsedSettings.phones.length === 0) {
       mergedSettings.phones = [
         {
           label: 'WhatsApp Hotline',
@@ -103,7 +104,7 @@ export function readDB() {
         },
       ];
     }
-    if (!Array.isArray(mergedSettings.emails) || mergedSettings.emails.length === 0) {
+    if (!Array.isArray(parsedSettings.emails) || parsedSettings.emails.length === 0) {
       mergedSettings.emails = [mergedSettings.email || DEFAULT_DATA.settings.email];
     }
     return {
