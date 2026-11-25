@@ -12,6 +12,7 @@ import ProjectCard from '@/components/portfolio/ProjectCard';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import { INITIAL_PROJECTS } from '@/data/mockData';
 import { ArrowRight } from 'lucide-react';
+import { useSiteSettings } from '@/lib/useSiteSettings';
 const FEATURED_CATEGORIES = [
     { key: 'Villa', label: 'Villa Mewah & Resort' },
     { key: 'Rumah Tinggal', label: 'Rumah Tinggal Eksklusif' },
@@ -19,6 +20,7 @@ const FEATURED_CATEGORIES = [
     { key: 'Desain Interior', label: 'Desain Interior & Living Suite' },
 ];
 export default function HomePage() {
+    const settings = useSiteSettings();
     return (<div className="min-h-screen flex flex-col bg-stone-50">
       <Navbar />
 
@@ -32,11 +34,11 @@ export default function HomePage() {
             <ScrollReveal animation="fade-up">
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight">
-                  Karya Desain Arsitektur Unggulan
+                  {settings.homePortfolioTitle}
                 </h2>
                 <div className="w-16 h-1 bg-amber-500 mx-auto mt-4 mb-4 rounded-full"/>
                 <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
-                  Eksplorasi portofolio pilihan kami yang dirancang berdasarkan kategori spesialisasi arsitektur dan interior.
+                  {settings.homePortfolioDesc}
                 </p>
               </div>
             </ScrollReveal>

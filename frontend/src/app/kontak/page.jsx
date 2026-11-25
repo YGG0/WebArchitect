@@ -4,29 +4,10 @@ import Navbar from '@/components/layout/Navbar';
 import ConsultationSection from '@/components/home/ConsultationSection';
 import { MessageCircle, Mail, MapPin, ExternalLink } from 'lucide-react';
 import { COMPANY_INFO, getWhatsAppUrl } from '@/data/mockData';
+import { useSiteSettings } from '@/lib/useSiteSettings';
 
 export default function ContactPage() {
-    const [settings, setSettings] = useState({
-        whatsappNumber: COMPANY_INFO.whatsapp,
-        whatsappDisplay: COMPANY_INFO.phoneDisplay,
-        email: COMPANY_INFO.email,
-        address: 'Jl. Senopati No. 88, Kebayoran Baru, Jakarta Selatan 12190',
-        branchAddress: 'Cabang Bali: Jl. Pantai Batu Bolong, Canggu',
-        googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Jl.+Senopati+No.+88,+Kebayoran+Baru,+Jakarta+Selatan',
-        googleMapsEmbedUrl: 'https://maps.google.com/maps?q=Jl.+Senopati+No.+88,+Kebayoran+Baru,+Jakarta+Selatan&t=&z=15&ie=UTF8&iwloc=&output=embed',
-    });
-
-    useEffect(() => {
-        const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-        fetch(`${apiBase}/api/settings`)
-            .then((res) => res.json())
-            .then((json) => {
-                if (json.success && json.data) {
-                    setSettings((prev) => ({ ...prev, ...json.data }));
-                }
-            })
-            .catch(() => {});
-    }, []);
+    const settings = useSiteSettings();
 
     const waHref = settings.whatsappNumber
         ? `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent('Halo SPRIO Architect, saya ingin konsultasi mengenai desain arsitektur.')}`

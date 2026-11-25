@@ -1,13 +1,36 @@
 'use client';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import PortfolioFilter from '@/components/portfolio/PortfolioFilter';
 import ProjectCard from '@/components/portfolio/ProjectCard';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import { INITIAL_PROJECTS } from '@/data/mockData';
+import { useSiteSettings } from '@/lib/useSiteSettings';
 import { Sparkles, SearchX } from 'lucide-react';
 export default function PortfolioPage() {
+    const settings = useSiteSettings();
+    const [allProjects, setAllProjects] = useState(INITIAL_PROJECTS);
+
+    useEffect(() => {
+        const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        fetch(`${apiBase}/api/projects`)
+            .then((r) => r.json())
+            .then((res) => {
+                if (res.success && res.data) {
+                    const { customProjects = [], deletedProjectIds = [], featuredOverrides = {} } = res.data;
+                    const merged = [
+                        ...customProjects,
+                        ...INITIAL_PROJECTS.filter((p) => !deletedProjectIds.includes(p.id)).map((p) =>
+                            p.id in featuredOverrides ? { ...p, isFeatured: featuredOverrides[p.id] } : p
+                        ),
+                    ];
+                    setAllProjects(merged);
+                }
+            })
+            .catch(() => {});
+    }, []);
+
     const [filter, setFilter] = useState({
         search: '',
         category: 'Semua Kategori',
@@ -20,7 +43,7 @@ export default function PortfolioPage() {
     });
     const [sortBy, setSortBy] = useState('latest');
     const filteredProjects = useMemo(() => {
-        const list = INITIAL_PROJECTS.filter((proj) => {
+        const list = allProjects.filter((proj) => {
             // 1. Search text (title, code, location, style)
             if (filter.search.trim() !== '') {
                 const q = filter.search.toLowerCase();
@@ -84,16 +107,16 @@ export default function PortfolioPage() {
         <section className="relative w-full h-[45vh] min-h-[340px] flex items-center justify-center overflow-hidden bg-stone-950 text-white pt-24 pb-12">
           {/* Background Architectural Photo */}
           <div className="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2200&q=85" alt="Portofolio Arsitektur" className="w-full h-full object-cover object-center filter brightness-[0.55] contrast-[1.05]"/>
+            <img src={settings.portfolioBannerImage} alt="Portofolio Arsitektur" className="w-full h-full object-cover object-center filter brightness-[0.55] contrast-[1.05]"/>
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent"/>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 drop-shadow-md">
-              Galeri Portofolio Arsitektur
+              {settings.portfolioTitle}
             </h1>
             <p className="text-stone-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-light drop-shadow">
-              Koleksi karya desain villa tropis, hunian residensial eksklusif, dan bangunan komersial yang telah kami rancang dengan presisi arsitektural tinggi.
+              {settings.portfolioDesc}
             </p>
           </div>
         </section>

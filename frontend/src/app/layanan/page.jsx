@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { SERVICES_DATA } from '@/data/mockData';
 import { Building2, LayoutGrid, Eye, Compass, CheckCircle2, Sparkles } from 'lucide-react';
+import { useSiteSettings } from '@/lib/useSiteSettings';
 const iconMap = {
     Building2: <Building2 className="w-8 h-8"/>,
     LayoutGrid: <LayoutGrid className="w-8 h-8"/>,
@@ -11,6 +12,7 @@ const iconMap = {
     Compass: <Compass className="w-8 h-8"/>,
 };
 export default function ServicesPage() {
+    const settings = useSiteSettings();
     return (<div className="min-h-screen flex flex-col bg-stone-50">
       <Navbar />
 
@@ -19,16 +21,16 @@ export default function ServicesPage() {
         <section className="relative w-full h-[52vh] min-h-[380px] flex items-center justify-center overflow-hidden bg-stone-950 text-white pt-24 pb-12">
           {/* Background Architectural Photo */}
           <div className="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2200&q=85" alt="Layanan Arsitektur & Desain" className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.05]"/>
+            <img src={settings.layananBannerImage} alt="Layanan Arsitektur & Desain" className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.05]"/>
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent"/>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 drop-shadow-md">
-              Layanan Desain Arsitektur & Interior
+              {settings.layananTitle}
             </h1>
             <p className="text-stone-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-light drop-shadow">
-              Kami menyajikan layanan arsitektur end-to-end dengan standar presisi tinggi, mengintegrasikan estetika visual kontemporer, kenyamanan tata ruang, serta efisiensi anggaran konstruksi.
+              {settings.layananDesc}
             </p>
           </div>
         </section>

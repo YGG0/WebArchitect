@@ -3,7 +3,9 @@ import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Award, Compass, Target, ShieldCheck } from 'lucide-react';
+import { useSiteSettings } from '@/lib/useSiteSettings';
 export default function AboutPage() {
+    const settings = useSiteSettings();
     return (<div className="min-h-screen flex flex-col bg-stone-50">
       <Navbar />
 
@@ -12,16 +14,16 @@ export default function AboutPage() {
         <section className="relative w-full h-[52vh] min-h-[380px] flex items-center justify-center overflow-hidden bg-stone-950 text-white pt-24 pb-12">
           {/* Background Architectural Photo */}
           <div className="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2200&q=85" alt="Studio Arsitek SPRIO" className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.05]"/>
+            <img src={settings.tentangBannerImage} alt="Studio Arsitek SPRIO" className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.05]"/>
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent"/>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 drop-shadow-md">
-              Tentang SPRIO Architect & Interior
+              {settings.tentangTitle}
             </h1>
             <p className="text-stone-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-light drop-shadow">
-              Mendedikasikan diri selama lebih dari 15 tahun dalam menciptakan karya arsitektur hunian yang memadukan keindahan proporsi klasik dan kemurnian desain modern tropis.
+              {settings.tentangDesc}
             </p>
           </div>
         </section>
@@ -33,17 +35,17 @@ export default function AboutPage() {
               <div className="lg:col-span-6 space-y-6">
                 <div>
                   <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">
-                    Arsitektur Bukan Sekadar Bangunan, Melainkan Ruang Jiwa & Kehidupan
+                    {settings.tentangHeadline}
                   </h2>
                   <div className="w-16 h-1 bg-amber-500 mt-3 rounded-full"/>
                 </div>
 
                 <p className="text-stone-600 text-sm leading-relaxed">
-                  Berdiri sejak tahun 2009, SPRIO Architect berkembang menjadi salah satu biro perancang arsitektur premium di Indonesia. Kami percaya bahwa setiap keluarga memiliki kebiasaan, ritme kehidupan, dan cita rasa estetika yang unik.
+                  {settings.tentangBody1}
                 </p>
 
                 <p className="text-stone-600 text-sm leading-relaxed">
-                  Oleh karena itu, setiap garis desain yang kami torehkan selalu diawali dengan pemahaman mendalam atas kepribadian pemilik rumah, analisis orientasi matahari, serta sirkulasi angin alami tropis Indonesia.
+                  {settings.tentangBody2}
                 </p>
 
                 <div className="pt-2 flex items-center gap-4 text-xs font-semibold text-stone-900">
@@ -58,7 +60,7 @@ export default function AboutPage() {
 
               <div className="lg:col-span-6 relative">
                 <div className="aspect-[4/3] rounded-xs overflow-hidden shadow-2xl border border-stone-200">
-                  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Architecture Studio" className="w-full h-full object-cover"/>
+                  <img src={settings.tentangSideImage} alt="Architecture Studio" className="w-full h-full object-cover"/>
                 </div>
               </div>
             </div>

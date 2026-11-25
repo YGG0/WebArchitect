@@ -6,7 +6,9 @@ import Footer from '@/components/layout/Footer';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import { Check, MessageCircle, HelpCircle, ArrowRight } from 'lucide-react';
 import { PACKAGES_DATA, getWhatsAppUrl, COMPANY_INFO } from '@/data/mockData';
+import { useSiteSettings } from '@/lib/useSiteSettings';
 export default function PaketPage() {
+    const settings = useSiteSettings();
     const faqs = [
         {
             q: 'Bagaimana cara memesan paket desain arsitektur melalui WhatsApp?',
@@ -33,17 +35,17 @@ export default function PaketPage() {
         <section className="relative w-full h-[52vh] min-h-[380px] flex items-center justify-center overflow-hidden bg-stone-950 text-white pt-24 pb-12">
           {/* Background Architectural Photo */}
           <div className="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=85" alt="Paket Desain Arsitektur" className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.05]"/>
+            <img src={settings.paketBannerImage} alt="Paket Desain Arsitektur" className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.05]"/>
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent"/>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 drop-shadow-md">
-              Pilihan Paket Desain Arsitektur & Interior
+              {settings.paketTitle}
             </h1>
             <div className="w-20 h-1 bg-amber-500 mx-auto rounded-full mb-5"/>
             <p className="max-w-3xl mx-auto text-stone-200 text-sm sm:text-base leading-relaxed font-light drop-shadow">
-              Temukan paket rancang bangun yang dirancang proporsional sesuai luas dan kebutuhan proyek Anda. Terintegrasi langsung dengan WhatsApp tim arsitek kami untuk konsultasi dan pemesanan instan.
+              {settings.paketDesc}
             </p>
           </div>
         </section>
