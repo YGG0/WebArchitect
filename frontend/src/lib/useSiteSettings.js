@@ -33,6 +33,10 @@ export const DEFAULT_SITE_SETTINGS = {
   whatsappNumber: '6287872008510',
   whatsappDisplay: '+62 878-7200-8510',
   email: 'studio@sprioarchitect.com',
+  phones: [
+    { label: 'WhatsApp Hotline', number: '6287872008510', display: '+62 878-7200-8510' },
+  ],
+  emails: ['studio@sprioarchitect.com'],
   address: 'Jl. Senopati No. 88, Kebayoran Baru, Jakarta Selatan 12190',
   branchAddress: 'Cabang Bali: Jl. Pantai Batu Bolong, Canggu',
   googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Jl.+Senopati+No.+88,+Kebayoran+Baru,+Jakarta+Selatan',

@@ -56,33 +56,37 @@ export default function ContactPage() {
 
               {/* Minimalist Contact Rows */}
               <div className="space-y-6 pt-2 text-xs sm:text-sm text-stone-700 font-light max-w-xl mx-auto">
-                {/* WhatsApp Phone */}
-                <div className="flex items-center justify-center gap-3">
-                  <span className="w-9 h-9 rounded-full border border-amber-600/40 text-amber-600 flex items-center justify-center shrink-0">
-                    <MessageCircle className="w-4 h-4 text-amber-600" />
-                  </span>
-                  <a
-                    href={waHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-amber-600 transition-colors tracking-wider font-normal text-sm"
-                  >
-                    {settings.whatsappDisplay}
-                  </a>
-                </div>
+                {/* All WhatsApp / Phone Numbers */}
+                {(settings.phones?.length ? settings.phones : [{ label: 'WhatsApp', number: settings.whatsappNumber, display: settings.whatsappDisplay }]).map((p, idx) => (
+                  <div key={idx} className="flex items-center justify-center gap-3">
+                    <span className="w-9 h-9 rounded-full border border-amber-600/40 text-amber-600 flex items-center justify-center shrink-0">
+                      <MessageCircle className="w-4 h-4 text-amber-600" />
+                    </span>
+                    <a
+                      href={`https://wa.me/${p.number}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-amber-600 transition-colors tracking-wider font-normal text-sm"
+                    >
+                      {p.display} {p.label ? <span className="text-xs text-stone-400">({p.label})</span> : null}
+                    </a>
+                  </div>
+                ))}
 
-                {/* Email */}
-                <div className="flex items-center justify-center gap-3">
-                  <span className="w-9 h-9 rounded-full border border-amber-600/40 text-amber-600 flex items-center justify-center shrink-0">
-                    <Mail className="w-4 h-4 text-amber-600" />
-                  </span>
-                  <a
-                    href={`mailto:${settings.email}`}
-                    className="hover:text-amber-600 transition-colors tracking-wider font-normal text-sm"
-                  >
-                    {settings.email}
-                  </a>
-                </div>
+                {/* All Emails */}
+                {(settings.emails?.length ? settings.emails : [settings.email]).map((em, idx) => (
+                  <div key={idx} className="flex items-center justify-center gap-3">
+                    <span className="w-9 h-9 rounded-full border border-amber-600/40 text-amber-600 flex items-center justify-center shrink-0">
+                      <Mail className="w-4 h-4 text-amber-600" />
+                    </span>
+                    <a
+                      href={`mailto:${em}`}
+                      className="hover:text-amber-600 transition-colors tracking-wider font-normal text-sm"
+                    >
+                      {em}
+                    </a>
+                  </div>
+                ))}
 
                 {/* Studio Address + Direct Google Maps Link */}
                 <div className="flex flex-col items-center gap-3 text-center">

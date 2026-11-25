@@ -1,10 +1,12 @@
 'use client';
 import React, { useState } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
+import { useSiteSettings } from '@/lib/useSiteSettings';
 export default function FloatingWhatsApp() {
+    const settings = useSiteSettings();
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState('');
-    const defaultPhone = '6287872008510'; // Studio WhatsApp Hotline (087872008510)
+    const defaultPhone = settings.whatsappNumber || '6287872008510';
     const handleSendWhatsApp = (e) => {
         e.preventDefault();
         const textToSend = message.trim() || 'Halo SPRIO Architect, saya tertarik untuk konsultasi desain arsitektur / interior hunian.';

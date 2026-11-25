@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { INITIAL_PROJECTS } from '@/data/mockData';
 import { DEFAULT_SITE_SETTINGS } from '@/lib/useSiteSettings';
+import ImageUploadField from '@/components/admin/ImageUploadField';
 import {
   Building2,
   Plus,
@@ -133,11 +134,19 @@ export default function AdminDashboard() {
     e.preventDefault();
     setIsSaving(true);
     setSaveMessage('');
+    const primaryPhone = settings.phones?.[0];
+    const primaryEmail = settings.emails?.[0];
+    const payload = {
+      ...settings,
+      whatsappNumber: primaryPhone?.number || settings.whatsappNumber,
+      whatsappDisplay: primaryPhone?.display || settings.whatsappDisplay,
+      email: primaryEmail || settings.email,
+    };
     try {
       const res = await fetch(`${apiBase}/api/settings`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(settings),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (data.success) {
@@ -377,18 +386,11 @@ export default function AdminDashboard() {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Foto Background Utama (URL)</label>
-                  <input
-                    type="url"
-                    value={settings.heroImage}
-                    onChange={(e) => setSettings({ ...settings, heroImage: e.target.value })}
-                    className={inputClass}
-                  />
-                  {settings.heroImage && (
-                    <img src={settings.heroImage} alt="Preview" className="mt-2 h-32 w-full object-cover rounded-xl border border-stone-200" />
-                  )}
-                </div>
+                <ImageUploadField
+                  label="Foto Background Utama"
+                  value={settings.heroImage}
+                  onChange={(url) => setSettings({ ...settings, heroImage: url })}
+                />
 
                 <hr className="border-stone-100" />
 
@@ -451,15 +453,11 @@ export default function AdminDashboard() {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Foto Banner Header (URL)</label>
-                  <input
-                    type="url"
-                    value={settings.portfolioBannerImage}
-                    onChange={(e) => setSettings({ ...settings, portfolioBannerImage: e.target.value })}
-                    className={inputClass}
-                  />
-                </div>
+                <ImageUploadField
+                  label="Foto Banner Header"
+                  value={settings.portfolioBannerImage}
+                  onChange={(url) => setSettings({ ...settings, portfolioBannerImage: url })}
+                />
 
                 <div className="flex justify-end">
                   <button type="submit" disabled={isSaving} className="inline-flex items-center gap-2 bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-xl transition cursor-pointer">
@@ -529,15 +527,12 @@ export default function AdminDashboard() {
                         className={inputClass}
                       />
                     </div>
-                    <div>
-                      <label className="block font-semibold text-stone-700 mb-1">Link Foto Utama (URL)</label>
-                      <input
-                        type="url"
-                        value={newProject.thumbnail}
-                        onChange={(e) => setNewProject({ ...newProject, thumbnail: e.target.value })}
-                        className={inputClass}
-                      />
-                    </div>
+                    <ImageUploadField
+                      label="Foto Utama Proyek"
+                      value={newProject.thumbnail}
+                      onChange={(url) => setNewProject({ ...newProject, thumbnail: url })}
+                      compact
+                    />
                     <div>
                       <label className="block font-semibold text-stone-700 mb-1">Deskripsi</label>
                       <textarea
@@ -619,15 +614,11 @@ export default function AdminDashboard() {
                     className={inputClass}
                   />
                 </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Foto Banner Header (URL)</label>
-                  <input
-                    type="url"
-                    value={settings.layananBannerImage}
-                    onChange={(e) => setSettings({ ...settings, layananBannerImage: e.target.value })}
-                    className={inputClass}
-                  />
-                </div>
+                <ImageUploadField
+                  label="Foto Banner Header"
+                  value={settings.layananBannerImage}
+                  onChange={(url) => setSettings({ ...settings, layananBannerImage: url })}
+                />
               </div>
 
               <div className="flex justify-end">
@@ -666,15 +657,11 @@ export default function AdminDashboard() {
                     className={inputClass}
                   />
                 </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Foto Banner Header (URL)</label>
-                  <input
-                    type="url"
-                    value={settings.paketBannerImage}
-                    onChange={(e) => setSettings({ ...settings, paketBannerImage: e.target.value })}
-                    className={inputClass}
-                  />
-                </div>
+                <ImageUploadField
+                  label="Foto Banner Header"
+                  value={settings.paketBannerImage}
+                  onChange={(url) => setSettings({ ...settings, paketBannerImage: url })}
+                />
               </div>
 
               <div className="flex justify-end">
@@ -741,24 +728,16 @@ export default function AdminDashboard() {
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-stone-700 mb-1">Foto Banner Atas (URL)</label>
-                    <input
-                      type="url"
-                      value={settings.tentangBannerImage}
-                      onChange={(e) => setSettings({ ...settings, tentangBannerImage: e.target.value })}
-                      className={inputClass}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-stone-700 mb-1">Foto Samping Cerita (URL)</label>
-                    <input
-                      type="url"
-                      value={settings.tentangSideImage}
-                      onChange={(e) => setSettings({ ...settings, tentangSideImage: e.target.value })}
-                      className={inputClass}
-                    />
-                  </div>
+                  <ImageUploadField
+                    label="Foto Banner Atas"
+                    value={settings.tentangBannerImage}
+                    onChange={(url) => setSettings({ ...settings, tentangBannerImage: url })}
+                  />
+                  <ImageUploadField
+                    label="Foto Samping Cerita"
+                    value={settings.tentangSideImage}
+                    onChange={(url) => setSettings({ ...settings, tentangSideImage: url })}
+                  />
                 </div>
               </div>
 
@@ -779,34 +758,148 @@ export default function AdminDashboard() {
                 <p className="text-xs text-stone-500">Atur nomor WhatsApp, email, alamat studio, dan peta Google Maps.</p>
               </div>
 
+              {/* Multi Nomor WhatsApp / Telepon */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold uppercase tracking-wider text-stone-700">
+                    Daftar Nomor WhatsApp / Telepon
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSettings({
+                        ...settings,
+                        phones: [
+                          ...(settings.phones || []),
+                          { label: 'Admin Cabang', number: '628', display: '+62 8...' },
+                        ],
+                      })
+                    }
+                    className="inline-flex items-center gap-1 text-xs font-semibold bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 px-3 py-1.5 rounded-lg cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" /> Tambah Nomor
+                  </button>
+                </div>
+
+                <div className="space-y-2.5">
+                  {(settings.phones || []).map((p, idx) => (
+                    <div key={idx} className="grid grid-cols-1 sm:grid-cols-12 gap-2 items-center bg-stone-50/70 p-2.5 rounded-xl border border-stone-200">
+                      <div className="sm:col-span-3">
+                        <input
+                          type="text"
+                          value={p.label}
+                          onChange={(e) => {
+                            const updated = [...settings.phones];
+                            updated[idx] = { ...updated[idx], label: e.target.value };
+                            setSettings({ ...settings, phones: updated });
+                          }}
+                          placeholder="Label (misal: Hotline)"
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="sm:col-span-4">
+                        <input
+                          type="text"
+                          value={p.number}
+                          onChange={(e) => {
+                            const updated = [...settings.phones];
+                            updated[idx] = { ...updated[idx], number: e.target.value };
+                            setSettings({ ...settings, phones: updated });
+                          }}
+                          placeholder="Format WA: 62878..."
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="sm:col-span-4">
+                        <input
+                          type="text"
+                          value={p.display}
+                          onChange={(e) => {
+                            const updated = [...settings.phones];
+                            updated[idx] = { ...updated[idx], display: e.target.value };
+                            setSettings({ ...settings, phones: updated });
+                          }}
+                          placeholder="Tampilan: +62 878-..."
+                          className={inputClass}
+                        />
+                      </div>
+                      <div className="sm:col-span-1 flex justify-end">
+                        {settings.phones.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setSettings({
+                                ...settings,
+                                phones: settings.phones.filter((_, i) => i !== idx),
+                              })
+                            }
+                            className="p-2 rounded-lg text-rose-500 hover:bg-rose-50 cursor-pointer"
+                            title="Hapus nomor"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Multi Email */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold uppercase tracking-wider text-stone-700">
+                    Daftar Email Studio
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSettings({
+                        ...settings,
+                        emails: [...(settings.emails || []), ''],
+                      })
+                    }
+                    className="inline-flex items-center gap-1 text-xs font-semibold bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 px-3 py-1.5 rounded-lg cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" /> Tambah Email
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  {(settings.emails || []).map((em, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <input
+                        type="email"
+                        value={em}
+                        onChange={(e) => {
+                          const updated = [...settings.emails];
+                          updated[idx] = e.target.value;
+                          setSettings({ ...settings, emails: updated });
+                        }}
+                        placeholder="contoh@domain.com"
+                        className={inputClass}
+                      />
+                      {settings.emails.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setSettings({
+                              ...settings,
+                              emails: settings.emails.filter((_, i) => i !== idx),
+                            })
+                          }
+                          className="p-2.5 rounded-xl border border-stone-200 text-rose-500 hover:bg-rose-50 cursor-pointer shrink-0"
+                          title="Hapus email"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Nomor WA (Format 628...)</label>
-                  <input
-                    type="text"
-                    value={settings.whatsappNumber}
-                    onChange={(e) => setSettings({ ...settings, whatsappNumber: e.target.value })}
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Tampilan Nomor di Web</label>
-                  <input
-                    type="text"
-                    value={settings.whatsappDisplay}
-                    onChange={(e) => setSettings({ ...settings, whatsappDisplay: e.target.value })}
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Email Studio</label>
-                  <input
-                    type="email"
-                    value={settings.email}
-                    onChange={(e) => setSettings({ ...settings, email: e.target.value })}
-                    className={inputClass}
-                  />
-                </div>
                 <div>
                   <label className="block text-xs font-semibold text-stone-700 mb-1">Alamat Utama</label>
                   <input
@@ -816,7 +909,7 @@ export default function AdminDashboard() {
                     className={inputClass}
                   />
                 </div>
-                <div className="md:col-span-2">
+                <div>
                   <label className="block text-xs font-semibold text-stone-700 mb-1">Alamat Cabang (Opsional)</label>
                   <input
                     type="text"
