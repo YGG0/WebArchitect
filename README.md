@@ -21,13 +21,3 @@ npm run dev
 Frontend berjalan di: `http://localhost:3000`
 
 ---
-
-## Cara Kembali ke Versi Menyatu (Monolith)
-Jika suatu saat ingin kembali ke versi menyatu (1 folder Next.js):
-```bash
-git checkout backup-monolith-js
-```
-Atau untuk kembali ke versi TypeScript awal:
-```bash
-git checkout backup-typescript
-```
